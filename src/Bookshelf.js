@@ -9,8 +9,9 @@ return <div className="bookshelf">
     {props.books
         .filter(book => book.shelf === props.id)
         .map(book =>
-            <li key={book.id}>
-            <Book book={book}/>
+            <li key={ book.id }>
+            <Book book={ book }
+            assignShelf = { props.assignShelf }/>
             </li>
         )}
   </ol>

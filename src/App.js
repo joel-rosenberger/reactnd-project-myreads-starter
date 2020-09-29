@@ -16,10 +16,20 @@ class BooksApp extends React.Component {
     showSearchPage: false
   }
 
-  componentDidMount() {
+  assignShelf = (book, shelf) => {
+    console.log(book.id);
+    console.log(shelf);
+    BooksAPI.update(book, shelf).then(() => this.loadBooks());
+  }
+  
+  loadBooks = () => {
     BooksAPI.getAll().then(results => this.setState({
       books: results
     }))
+  }
+
+  componentDidMount() {
+    this.loadBooks();
   }
 
   render() {
@@ -53,9 +63,9 @@ class BooksApp extends React.Component {
             </div>
             <div className="list-books-content">
               <div>
-                <Bookshelf id="currentlyReading" title="Currently Reading" books={this.state.books}></Bookshelf>
-                <Bookshelf id="wantToRead" title="Want To Read" books={this.state.books}></Bookshelf>
-                <Bookshelf id="read" title="Read" books={this.state.books}></Bookshelf>
+                <Bookshelf id="currentlyReading" title="Currently Reading" books={this.state.books} assignShelf={ this.assignShelf }></Bookshelf>
+                <Bookshelf id="wantToRead" title="Want To Read" books={this.state.books} assignShelf={ this.assignShelf }></Bookshelf>
+                <Bookshelf id="read" title="Read" books={this.state.books} assignShelf={ this.assignShelf }></Bookshelf>
               </div>
             </div>
             <div className="open-search">
