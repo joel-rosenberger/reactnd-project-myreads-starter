@@ -20,9 +20,9 @@ class BookshelfChanger extends Component {
 
     render() {
         return <div className="book-shelf-changer">
-        <select onChange = { this.menuChange } >
+        <select onChange = { this.menuChange } defaultValue="move">
             { this.props.selectOptions.map(option => 
-                <option selected={ option.selected }  key={ option.id } disabled={ this.checkIfDisabled(option) } value={ option.id } >{ option.label }</option>
+                <option key={ option.id } disabled={ this.checkIfDisabled(option) } value={ option.id } >{ option.label }</option>
             )}
         </select>
       </div>
@@ -31,7 +31,7 @@ class BookshelfChanger extends Component {
 
 BookshelfChanger.defaultProps = {
     selectOptions: [
-        { id: "move", label: "Move to...", disabledFor: "all", selected: "true"},
+        { id: "move", label: "Move to...", disabledFor: "all"},
         { id: "currentlyReading", label: "Currently Reading", disabledFor: "currentlyReading" },
         { id: "wantToRead", label: "Want to Read", disabledFor: "wantToRead" },
         { id: "read", label: "Read", disabledFor: "read" },

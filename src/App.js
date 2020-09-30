@@ -28,7 +28,9 @@ class BooksApp extends React.Component {
   render() {
     return (
       <div className="app">
-        <Route path="/search" component={BookSearch}/>
+        <Route path="/search" render={() => (
+            <BookSearch closeSearch = { this.closeSearch } assignShelf={this.assignShelf}/>)}
+            />
         <Route path="/" exact render={() => (
           <div className="list-books">
             <div className="list-books-title">
