@@ -11,8 +11,11 @@ class BooksApp extends React.Component {
     books: []
   }
 
-  assignShelf = (book, shelf) => {
-    BooksAPI.update(book, shelf).then(() => this.loadBooks());
+  assignShelf = (book, shelf, callback) => {
+    BooksAPI.update(book, shelf).then(() => {
+      callback();
+      this.loadBooks()
+    });
   }
   
   loadBooks = () => {
